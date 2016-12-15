@@ -1,0 +1,2 @@
+Connection: SQLSTATE[HY000] [1045] Access denied for user 'neahu'@'users.metropolia.fi' (using password: YES)
+getNewMedia(): SQLSTATE[42000]: Syntax error or access violation: 1327 Undeclared variable: XX

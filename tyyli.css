@@ -1,0 +1,374 @@
+
+A:link {
+ COLOR: #46ccab /*The color of the link*/
+}
+A:visited {
+ COLOR: #800080/*The color of the visited link*/
+}
+A:hover {
+ COLOR: #2c7f69 /*The color of the mouseover or 'hover' link*/
+}
+body {
+	font-family: 'Space Mono', monospace !important;
+    color: #627f78; 
+	margin: 0;
+} /*The color of all the other text within the body of the page*/
+
+
+
+@media screen and (max-width:999px){
+    .sivu {
+	   width:100%;
+    }
+    img{
+        width:100%;
+    }
+    .kuvat{
+        width:100%;
+    }
+    .kuvat img{
+        width: 50%;
+    }
+    
+    .foo img{
+        height: 70px;
+        width: 70px;
+    }
+    
+    .kommentit{
+        font-size: 10px;
+    }
+    
+    body{
+        font-size: 12px;
+    }
+    
+    .klisäys{
+        width: 100%;
+    }
+    
+    .kommentit{
+        width: 90%;
+    }
+    
+}
+@media screen and (min-width:1000px){
+    .sivu {
+	   width:100%;
+    }
+    img{
+        width:1000px;
+    }
+    .kuvat{
+        width:1000px;
+    }
+    .kuvat img {
+        width: 500px;
+    }
+    
+    .foo img{
+        height: 100px;
+        width: 100px;
+    }
+    
+    .kommentit{
+        font-size: 15px;
+    }
+    
+    body{
+        font-size: 20px;
+    }
+    
+    .klisäys{
+        width: 50%;
+    }
+    
+    .kommentit{
+        width: 80%;
+    }
+    
+}
+
+.flogin{
+    font-size: 20px;
+    border: solid gray 5px;
+    width:  20%;
+    border-radius: 20px;
+    margin: 200px auto;
+    background:#dcf0eb;
+    padding: 50px;
+}
+
+input{
+    line-height: 3em;
+}
+
+btn{
+    color: #fff;
+}
+
+.teksti {
+    text-align: center;
+}
+
+delpic{
+    text-align:right;
+}
+
+
+body {
+	font-family: 'Space Mono', monospace !important;
+    color: #627f78; 
+	margin: 0;
+}
+
+.minttu{
+	background-color: #84cebb;	
+}
+
+.lihavointi {
+	font-weight: bold;
+}
+
+.kursiivi {
+	font-style: italic;
+}
+
+.sivu {
+	max-width: 1000px;
+	margin: auto;
+}
+
+.laatikko {
+    border: 2px solid #dcf0eb ;
+    background-color: #dcf0eb ;
+    margin-bottom: 10px;
+    
+}
+
+.vierekkäin{
+    max-width: 500px;
+    display: inline-block;
+    margin: auto;
+    align-content:    
+}
+
+#content {
+    font-family: 'Space Mono', monospace;
+    color: #627f78;
+    text-align: center;
+    
+}
+
+.pääkuva {
+    max-width: 1000px;
+
+    overflow: hidden;
+    
+}
+
+header {
+    
+	max-width: 1000px;
+    
+    margin: auto;
+}
+
+footer {
+    
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+    border: 2px solid #dcf0eb ;
+    background-color: #dcf0eb ;
+}
+
+
+/*.sisalto {
+	width: 100%;
+	float: left;
+    margin:0px auto;
+}*/
+
+
+main h1 {
+	
+	margin: 0;
+	text-align: center;
+}
+
+.kuvat{
+    padding: 0;
+    max-width: inherit;
+    
+}
+.kuvat img {
+    list-style-type: none;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 50%;
+    
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+
+.klisäys{
+    font-size: 20px;
+    align-content: center;
+    text-align: center;
+    margin: 20px auto;
+    background:#dcf0eb;
+   
+    
+}
+
+.foo img:last-child{display:none}
+.foo:hover img:first-child{display:none}
+.foo:hover img:last-child{display:inline-block}
+
+.foo img{
+    max-height: 100px;
+    max-width: 100px;
+}
+
+textarea#styled {
+	width: 400px;
+	height: 50px;
+	border: 3px solid #84cebb;
+	padding: 5px;
+    background-color: #84cebb;
+    display: inline-block;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 15px;
+}
+
+textarea#styled:hover {
+	width: 400px;
+	height: 50px;
+	border: 3px solid #84cebb;
+	padding: 5px;
+    background-color: #dcf0eb;
+    display: inline-block;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 15px;
+}
+
+input#styled {
+	width: 400px;
+	height: 50px;
+	border: 3px solid #84cebb;
+	padding: 5px;
+    background-color: #84cebb;
+    display: inline-block;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 15px;
+}
+
+input#styled:hover {
+	width: 400px;
+	height: 50px;
+	border: 3px solid #84cebb;
+	padding: 5px;
+    background-color: #dcf0eb;
+    display: inline-block;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 15px;
+}
+
+input#nappula {
+    
+    background-color: #dcf0eb;
+    border: 3px solid #84cebb;
+    color: #627f78;
+    padding: 0px 30px;
+    font-family: 'Space Mono', monospace !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: auto;
+    cursor: pointer;
+    
+
+}
+
+input#nappula:hover {
+    
+    background-color: #84cebb;
+    border: 3px solid #84cebb;
+    color: #627f78;
+    padding: 0px 30px;
+    font-family: 'Space Mono', monospace !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: auto;
+    cursor: pointer;
+    
+
+}
+
+input#fileToUpload {
+    
+    background-color: #dcf0eb;
+    border: 3px solid #84cebb;
+    color: #627f78;
+    padding: 7px 10px;
+    font-family: 'Space Mono', monospace !important;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+input#fileToUpload:hover {
+    
+    background-color: #84cebb;
+    border: 3px solid #84cebb;
+    color: #627f78;
+    padding: 7px 10px;
+    font-family: 'Space Mono', monospace !important;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+
+.formit{
+    align-content: center;
+    text-align: center;
+    
+    
+}
+
+.kommentit{
+    background-color: #dcf0eb;
+    border: 3px solid #84cebb;
+    color: #627f78;
+    padding: 7px 10px;
+    display: block;
+    margin: 1em auto;
+    
+    
+    
+
+    
+}
+
+.etusivulle{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
