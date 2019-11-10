@@ -1,26 +1,25 @@
+
 <?php
-include('config/config.php')
-    
-  
+include('config/config.php') 
 ?>
 
     <?php //saadaan baarien tiedot sivuille  
-    $data["Baari"]=$_GET["Baari"];  
-   $tiedot = $DBH->prepare("SELECT BKuva, BID, BNimi, Osoite, Aukiolo, Hinnasto FROM A_Baari WHERE BID = :Baari");
-        $tiedot->execute($data); 
+    $data["baari"]=$_GET["baari"];  
+    $tiedot = $dbh->prepare("SELECT ID, nimi, osoite, aukiolo, hinnasto, kuva FROM baari WHERE ID = :baari");
+    $tiedot->execute($data); 
        
-        $baari = $tiedot->fetch();        
+    $baari = $tiedot->fetch();        
 ?>
 
 
 
     <?php //tykkäykset
-    if(!empty($_GET['Baari'])){
-                $data["Baari"]=$_GET["Baari"];
-                $sql = $DBH->prepare("UPDATE A_Arvostelu SET ALike = ALike+1 WHERE ABaari = :Baari");
+    if(!empty($_GET['baari'])){
+                $data["baari"]=$_GET["baari"];
+                $sql = $dbh->prepare("UPDATE arvostelu SET likes = likes+1 WHERE baari = :baari");
                 $sql->execute($data);
               
-      $sql = $DBH->prepare("SELECT ALike FROM A_Arvostelu WHERE ABaari = :Baari");
+      $sql = $dbh->prepare("SELECT likes FROM arvostelu WHERE baari = :baari");
                 $sql->execute($data); 
         
         $rivi = $sql->fetch();
@@ -42,12 +41,12 @@ include('config/config.php')
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>
-            <?php echo $baari['BNimi']; ?>
+            <?php echo $baari['nimi']; ?>
         </title>
 
         <link rel="icon" href="img/logo.png">
         <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet" type="text/css">
-        <link href="tyyli.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
         
 
     </head>
@@ -57,61 +56,64 @@ include('config/config.php')
         <div class="sivu">
 
             <header>
-                <a href="kallionkierros.php">
+                <a href="index.php">
                     <img style="width: 100%" src="img/kkhed.png">
                 </a>
             </header>
 
             <main>
                 <div class="pääkuva">
-                    <img src="<?php echo $baari['BKuva']; ?>" alt="<?php echo $baari['BNimi']; ?>">
+                    <img src="<?php echo $baari['kuva']; ?>" alt="<?php echo $baari['nimi']; ?>">
                 </div>
-                <div class="laatikko">
+                <div class="container">
                     <h1>
-                        <?php echo $baari['BNimi']; ?>
+                        <?php echo $baari['nimi']; ?>
                     </h1>
-                </div>
+            
 
 
-                <div class="laatikko">
                     <div class="vierekkäin">
                         <ul>
                             <li>
                                 Osoite: <b>
-                             <?php echo $baari['Osoite']; ?>
+                             <?php echo $baari['osoite']; ?>
                             </b>
                             </li>
                             <li>
                                 Aukioloajat: <b>  
-                            <?php echo $baari['Aukiolo']; ?>
+                            <?php echo $baari['aukiolo']; ?>
                             </b>
                             </li>
                             <li>
                                 Hintoja: <b> 
-                            <?php echo $baari['Hinnasto']; ?>
+                            <?php echo $baari['hinnasto']; ?>
                             </b>
                             </li>
                         </ul>
-                    </div>
-                    <div class="vierekkäin">
+                        </div>
 
-                        <?php echo ('Tykkäyksiä: ' . $rivi["ALike"]); ?>
+                        <div class="vierekkäin">
 
-                        <a class="foo" href="baarit.php?Baari=<?php echo $baari['BID']; ?>">
+                        <ul>
+                        <li>
+                
+                        <?php echo ('Tykkäyksiä: ' . $rivi["likes"]); ?>
+
+                        <a class="foo" href="baarit.php?baari=<?php echo $baari['ID']; ?>">
 
                             <img src="img/tykkäys.png" />
-                            <img src="img/tykkäyshover.png" />
+                            <img src="img/bisse.png" />
                         </a>
-                        
-                    </div>
+                        </li>
+                        </ul>
+                        </div>
                 </div>
-                <div class="laatikko">
 
                     <ul class="kuvat">
 
 
                         <?php //kuvien lisäys
-     $sql = $DBH->prepare('SELECT Klinkki FROM A_Kuva WHERE KBaari = :Baari');
+     $sql = $dbh->prepare('SELECT linkki FROM kuva WHERE baari = :baari');
      $sql->execute($data);
               
      while($url = $sql->fetch(PDO::FETCH_COLUMN)){
@@ -126,7 +128,7 @@ include('config/config.php')
                         <form action="upload.php" method="post" enctype="multipart/form-data">
                             Valitse haluamasi kuva:
                             <input type="file" name="fileToUpload" id="fileToUpload">
-                            <input type="hidden" name="BID" value="<?php echo $baari['BID']; ?>">
+                            <input type="hidden" name="ID" value="<?php echo $baari['ID']; ?>">
                             <input type="submit" value="Lataa Kuva" id="nappula" name="submit">
                         </form>
                     </div>
@@ -136,7 +138,7 @@ include('config/config.php')
                     <div>
                         <div class="laatikko">
                             <div class="formit">
-                                <form action="baarit.php?Baari=<?php echo $baari ['BID'];?>" method="post">
+                                <form action="baarit.php?baari=<?php echo $baari ['ID'];?>" method="post">
                                     <textarea type="text" name="nimi" id="styled" placeholder="Kirjoita nimesi"  value="<?php echo $nimi;?>"></textarea>
                                     <br/><br/>
 
@@ -161,9 +163,9 @@ if(isset($_POST["submit"])){
     
 try {
 
-$sql = "INSERT INTO A_Kommentti (nimi, kommentti, KOBaari, KDate)
-VALUES ('".$_POST["nimi"]."','".$_POST["kommentti"]."','".$_GET["Baari"]."','".date('Y.m.d'). "')";
-if ($DBH->query($sql)) {
+$sql = "INSERT INTO kommentti (nimi, kommentti, baari, dates)
+VALUES ('".$_POST["nimi"]."','".$_POST["kommentti"]."','".$_GET["baari"]."','".date('Y.m.d'). "')";
+if ($dbh->query($sql)) {
  //echo "onnistui";
 }
 else{
@@ -182,19 +184,19 @@ echo $e->getMessage();
 }
 ?>
 <div class="kommentit">
-                                <?php //kommentointi
-     $sql = $DBH->prepare('SELECT nimi, kommentti, KDate FROM A_Kommentti WHERE KOBaari = :Baari');
+    <?php //kommentointi
+     $sql = $dbh->prepare('SELECT nimi, kommentti, dates FROM kommentti WHERE baari = :baari');
      $sql->execute($data);
     
      while($kommentti = $sql->fetch(PDO::FETCH_OBJ)){
-          echo($kommentti->KDate . '  ' . $kommentti->nimi . ': ' . $kommentti->kommentti . '<br>');    
+          echo($kommentti->dates . '  ' . $kommentti->nimi . ': ' . $kommentti->kommentti . '<br>');    
         }  
 
 ?>
                             </div>
                         </div>
 
-                        <a href="kallionkierros.php">
+                        <a href="index.php">
                             <p style="text-align:center">Etusivulle</p>
                         </a>
                         <a href="#top">
