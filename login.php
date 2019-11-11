@@ -1,3 +1,7 @@
+<?php
+require_once("config/config.php");
+?>
+<?php
     if(isset($_POST['login'])) {
             $username = ($_POST['username']);
             $password =( $_POST['password']);
@@ -9,12 +13,10 @@
 
             if($count == 1){
                 $_SESSION['username'] = $username;
-                
                 header('location: admin.php');
             }
-
-            else {
-                echo "Error: Incorrect Details!";
+                else {
+                    echo "Error: Incorrect Details!";
             }
 
         }
@@ -28,9 +30,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <header>
-        <a href="index.php">
-            <img style="width: 100%" src="img/kkhed.png">
-        </a>
+    <a href="index.php"><img style="width: 100%" src="img/kkhed.png"></a>
 </header>
 <body class="minttu">
     <div class="flogin">
@@ -40,8 +40,8 @@
             <input type="submit" name="login"  value="Login">   
         </form>
     </div> 
+</body>
 <footer>
     <p> © Kallionkierros 2016</p>
 </footer>
-</body>
 </html>

@@ -1,3 +1,6 @@
+<?php
+include("config/config.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,33 +13,22 @@
     </a>
 </header>
 <body class="minttu">
-    <?php
-        session_start();
-
-        if(isset($_POST['logout'])) {
-            session_start();
-            session_destroy();
-
-            header('location: index.php');
-        }
-    ?>
 
     <div class="teksti">
         <?php
             echo("<br/>");
             echo('Tervetuloa K.K tiimi');
             echo '<br/><br/>';
-            echo $_SESSION['username'];
             echo '<br/><br/>';
             echo('<a href=poistaminen.php>Kommenttien ja kuvien poistaminen');
             echo("<br/><br/>");
             echo('<a href=baarilisays.php>Baarin lisääminen</a>');
             echo("<br/><br/>");
-        ?>
 
-        <form name="logout" method="post" enctype="multipart/form-data">
-            <input type="submit" name="logout" value="Logout">
-        </form>
+        ?>
+<?php  
+include("logout.php");
+?>
     </div>
         <br/> 
 </body> 

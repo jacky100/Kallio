@@ -1,5 +1,8 @@
 <?php
-    include('config/config.php') 
+    include('config/config.php')
+?>
+
+<?php
     //saadaan baarien tiedot sivuille  
     $data["baari"]=$_GET["baari"];  
     $tiedot = $dbh->prepare("SELECT ID, nimi, osoite, aukiolo, hinnasto, kuva FROM baari WHERE ID = :baari");
